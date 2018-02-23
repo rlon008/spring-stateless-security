@@ -1,5 +1,5 @@
 # spring-stateless-security
-1)  How it works
+##  1) How it works
 
 This library will hook into existing spring security mechanism and do the following:
    i) Replace the HttpSessionSecurityContextRepository with a stateless version (StatelessSecurityContextRepository) that does not save any state to the session.
@@ -43,9 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 You must supply the following properties in your application, e.g:
 
-
-#Token expires in 8 hours.
 spring.security.stateless.jwt.expiryInSeconds=28800
+
 spring.security.stateless.jwt.secret=<Your secret key>
 
 
@@ -56,7 +55,7 @@ If a bean that implements AuthenticationConverter exists in the spring context, 
 
 
 
-2) Protection against CSRF
+## 2) Protection against CSRF
 Default configuration is using Origin & Referer checking, which is sufficient for most cases. It might not work however if the user is behind a proxy that
 removes the Origin & Referer headers.
 
@@ -64,7 +63,7 @@ You can alternative use
 
 
 
-3) Using with Spring OAuth2SSO
+## 3) Using with Spring OAuth2SSO
 If you're using Spring OAuth2SSO (E.g. via @EnableOAuth2Sso), you can use the nz.co.katatech.springboot.security.stateless.oauth.DisableStateRestTemplateCustomizer
 to disable stateKey checks (which uses http session underneath). All you need to do is define it as a bean in the spring context and spring OAuth2 will take care of the rest.
 
