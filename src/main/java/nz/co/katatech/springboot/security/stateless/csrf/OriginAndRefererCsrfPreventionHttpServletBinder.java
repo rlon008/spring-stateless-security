@@ -8,11 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
 
-/**
- * An implementation that protect agains Cross Site Request Forgery by checking Origin & Referer header, see:
- * https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet
- */
-
 public class OriginAndRefererCsrfPreventionHttpServletBinder extends AbstractXSRFPreventionHttpServletBinder {
     private static final String REFERER_HEADER_KEY = "Referer";
     private static final String ORIGIN_HEADER_KEY = "Origin";

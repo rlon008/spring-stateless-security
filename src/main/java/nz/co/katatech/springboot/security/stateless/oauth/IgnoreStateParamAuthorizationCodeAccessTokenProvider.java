@@ -19,11 +19,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 
-
-/**
- * Implementation is mostly the same as super class.  This particular implementation differs in that it does not check
- * the state key for possible CSRF.
- **/
 public class IgnoreStateParamAuthorizationCodeAccessTokenProvider extends AuthorizationCodeAccessTokenProvider {
 
     private StateKeyGenerator stateKeyGenerator = new DefaultStateKeyGenerator();

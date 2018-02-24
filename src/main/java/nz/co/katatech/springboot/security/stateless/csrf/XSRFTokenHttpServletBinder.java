@@ -6,13 +6,6 @@ import org.springframework.security.core.Authentication;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * An implementation that protect against Cross Site Request Forgery by using the  Custom Request Headers method, see:
- * https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet
- *
- * This method will compare a randomly generated (by the client) cookie & header and ensure they match
- */
-
 public class XSRFTokenHttpServletBinder extends AbstractXSRFPreventionHttpServletBinder {
 
     public static final String XSRF_TOKEN_COOKIE_NAME = "XSRF-TOKEN";
