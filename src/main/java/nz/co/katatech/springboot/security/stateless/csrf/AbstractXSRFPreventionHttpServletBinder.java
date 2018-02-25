@@ -1,11 +1,11 @@
 package nz.co.katatech.springboot.security.stateless.csrf;
 
-import com.google.common.collect.ImmutableList;
 import nz.co.katatech.springboot.security.stateless.HttpServletBinder;
 import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -20,7 +20,7 @@ public abstract class  AbstractXSRFPreventionHttpServletBinder implements HttpSe
     }
 
     public AbstractXSRFPreventionHttpServletBinder( HttpServletBinder<Authentication> delegate ) {
-        this( ImmutableList.of( "POST", "PATCH", "PUT", "DELETE" ), delegate );
+        this( Arrays.asList( "POST", "PATCH", "PUT", "DELETE" ), delegate );
     }
 
     @Override

@@ -10,10 +10,11 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static org.springframework.util.StringUtils.isEmpty;
 
 
@@ -44,9 +45,9 @@ public class StatelessSecurityConfiguration {
         );
     }
 
-    private List<String> toList( String domains) {
-        return isEmpty( domains ) ? newArrayList() :
-            newArrayList( domains.split( "," ) ).stream().map( String::trim ).collect( Collectors.toList() );
+    private List<String> toList( String domains ) {
+        return isEmpty( domains ) ? new ArrayList<>() :
+            Arrays.asList( domains.split( "," ) ).stream().map( String::trim ).collect( Collectors.toList() );
     }
 
 

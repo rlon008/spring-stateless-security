@@ -9,7 +9,7 @@
 
     <groupId>com.github.rlon008</groupId>
     <artifactId>spring-stateless-security</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <licenses>
         <license>
@@ -61,11 +61,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -79,20 +81,6 @@
             <artifactId>jjwt</artifactId>
             <version>0.9.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>24.0-jre</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-
 
         <!-- Test -->
         <dependency>
