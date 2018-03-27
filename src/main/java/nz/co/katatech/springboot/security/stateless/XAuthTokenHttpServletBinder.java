@@ -2,10 +2,13 @@ package nz.co.katatech.springboot.security.stateless;
 
 
 import org.springframework.security.core.Authentication;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import static org.springframework.util.StringUtils.isEmpty;
 
 public class XAuthTokenHttpServletBinder implements HttpServletBinder<Authentication> {
     private final TokenParser<String> tokenParser;
@@ -29,17 +32,20 @@ public class XAuthTokenHttpServletBinder implements HttpServletBinder<Authentica
 
     @Override
     public Authentication retrieve( HttpServletRequest request ) {
-        final String cookieToken = findToken( request );
-
-        if ( cookieToken != null ) {
+        final String token = getToken( request );
+        if ( token != null ) {
             try {
-                String token = tokenParser.parse( cookieToken );
-                return authenticationConverter.convert( token );
+                String parsedToken = tokenParser.parse( token );
+                return authenticationConverter.convert( parsedToken );
             } catch ( Exception ignored ) {
             }
         }
-
         return null;
+    }
+
+    private String getToken( HttpServletRequest request ) {
+        String headerToken = request.getHeader( X_AUTH_TOKEN );
+        return !isEmpty( headerToken ) ? headerToken : findCookieToken( request );
     }
 
     public XAuthTokenHttpServletBinder withCookiePath( String path ) {
@@ -47,7 +53,7 @@ public class XAuthTokenHttpServletBinder implements HttpServletBinder<Authentica
         return this;
     }
 
-    private String findToken( HttpServletRequest request ) {
+    private String findCookieToken( HttpServletRequest request ) {
         final Cookie[] cookies = request.getCookies();
         if ( cookies != null ) {
             for ( Cookie cookie : cookies ) {
